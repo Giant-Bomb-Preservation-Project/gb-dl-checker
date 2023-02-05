@@ -1,4 +1,4 @@
-#gb-dl-checker
+# gb-dl-checker
 
 ## Forked from https://gist.github.com/shlubbert/56d4865d1256a3d1a2eeed8c23df7bcb but am too stupid to figure out why I couldn't push to the fork.
 
