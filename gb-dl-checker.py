@@ -69,9 +69,11 @@ while True:
                   os.rename(path, new_path_api)
                   
                   # Print file renaming to Console
-
+                  print('     ')
+                  print('-------------------------')
                   print(filename + ' renamed to ' + filename_normalized)
-                  print ('-----------------------------------------')
+                  print('-------------------------') 
+                  print('     ')  
               break
 
           if apidata:
@@ -88,8 +90,11 @@ while True:
                       filename_normalized = apidata['Filename'].replace("\\", "_")
                       new_path_show = os.path.join(filepath, filename_normalized + '.mp4')
                       os.rename(path, new_path_show)
+                      print('     ')
+                      print('-------------------------')
                       print(filename + ' renamed to ' + filename_normalized)
-                      print ('-----------------------------------------')  
+                      print('-------------------------')  
+                      print('     ')  
                       skip = False
                       break
 
