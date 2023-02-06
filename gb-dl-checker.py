@@ -22,8 +22,8 @@ layout = [
 
 ]
 
-# Draw window
-window = sg.Window("GB DL Checker", layout, size=(500,150))
+# Draw window and designate icon
+window = sg.Window("GB DL Checker", layout, size=(500,150), icon='gbsp.ico')
 
 while True:
     event, values = window.read()
@@ -47,6 +47,7 @@ while True:
         print('')
 
         for path in video_files:
+          filepath = os.path.dirname(path)
           filename = os.path.basename(path)
           filesize = os.path.getsize(path)
 
@@ -58,7 +59,7 @@ while True:
               # If Show CSV present do not rename based on API dump
               if not show:
                   filename_normalized = apidata['Filename'].replace("\\", "_")
-                  new_path_api = os.path.join(video_folder, filename_normalized + '.mp4')
+                  new_path_api = os.path.join(filepath, filename_normalized + '.mp4')
                   os.rename(path, new_path_api)
               break
 
