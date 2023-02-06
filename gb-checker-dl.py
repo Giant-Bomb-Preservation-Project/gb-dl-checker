@@ -6,6 +6,8 @@ import csv, sys, os, math, re
 
 # Redefine default print method to sg.Print (pySimpleGUI)
 print = sg.Print
+
+# Set debug window size
 sg.SetOptions(debug_win_size=(100,50))
 
 # Change theme
@@ -53,6 +55,7 @@ while True:
           for row in apidump:
             if row['best_size_bytes'] and filesize == float(row['best_size_bytes'].replace(',','')):
               apidata = row
+              # If Show CSV present do not rename based on API dump
               if not show:
                   filename_normalized = apidata['Filename'].replace("\\", "_")
                   new_path_api = os.path.join(video_folder, filename_normalized + '.mp4')
@@ -67,6 +70,7 @@ while True:
                 for showrow in show:
                     if showrow['guid'] == apidata['guid']:
                       showrow['_found_'] = True
+                      # Rename files (only runs if Show CSV present)
                       filename_normalized = apidata['Filename'].replace("\\", "_")
                       new_path_show = os.path.join(video_folder, filename_normalized + '.mp4')
                       os.rename(path, new_path_show)
