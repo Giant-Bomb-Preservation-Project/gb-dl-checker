@@ -53,20 +53,25 @@ while True:
           for row in apidump:
             if row['best_size_bytes'] and filesize == float(row['best_size_bytes'].replace(',','')):
               apidata = row
-              new_file_path_dump = os.path.join(video_folder, row['Filename']+'.mp4')
-              os.rename (path, new_file_path_dump)
+              if not show:
+                  filename_normalized = apidata['Filename'].replace("\\", "_")
+                  new_path_api = os.path.join(video_folder, filename_normalized + '.mp4')
+                  os.rename(path, new_path_api)
+              break
 
           if apidata:
-        # If a show has been specified, check if this video is part of it
+          # If a show has been specified, check if this video is part of it
             skip = False
             if show:
                 skip = True
                 for showrow in show:
                     if showrow['guid'] == apidata['guid']:
                       showrow['_found_'] = True
+                      filename_normalized = apidata['Filename'].replace("\\", "_")
+                      new_path_show = os.path.join(video_folder, filename_normalized + '.mp4')
+                      os.rename(path, new_path_show)
                       skip = False
-                      new_file_path_show = os.path.join(video_folder, showrow['Filename']+'.mp4')
-                      os.rename (path, new_file_path_show)
+                      break
 
             if skip:
                 print('-', end='')
@@ -83,7 +88,7 @@ while True:
             print('+', end='')
             sys.stdout.flush()
 
-        else:
+          else:
             print('\nNo match for', path, '(Maybe not the highest quality?)')
 
     print('\n')
