@@ -88,6 +88,8 @@ while True:
                       filename_normalized = apidata['Filename'].replace("\\", "_")
                       new_path_show = os.path.join(video_folder, filename_normalized + '.mp4')
                       os.rename(path, new_path_show)
+                      print(filename + ' renamed to ' + filename_normalized)
+                      print ('----------------------------------------')  
                       skip = False
                       break
 
