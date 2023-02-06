@@ -86,7 +86,7 @@ while True:
                       showrow['_found_'] = True
                       # Rename files (only runs if Show CSV present)
                       filename_normalized = apidata['Filename'].replace("\\", "_")
-                      new_path_show = os.path.join(video_folder, filename_normalized + '.mp4')
+                      new_path_show = os.path.join(filepath, filename_normalized + '.mp4')
                       os.rename(path, new_path_show)
                       print(filename + ' renamed to ' + filename_normalized)
                       print ('----------------------------------------')  
