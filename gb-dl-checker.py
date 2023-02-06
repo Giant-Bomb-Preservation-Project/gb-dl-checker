@@ -71,7 +71,7 @@ while True:
                   # Print file renaming to Console
 
                   print(filename + ' renamed to ' + filename_normalized)
-                  print ('-----------------[POLICE STATE]-----------------')
+                  print ('-----------------------------------------')
               break
 
           if apidata:
@@ -89,7 +89,7 @@ while True:
                       new_path_show = os.path.join(filepath, filename_normalized + '.mp4')
                       os.rename(path, new_path_show)
                       print(filename + ' renamed to ' + filename_normalized)
-                      print ('-----------------[POLICE STATE]-----------------')  
+                      print ('-----------------------------------------')  
                       skip = False
                       break
 
