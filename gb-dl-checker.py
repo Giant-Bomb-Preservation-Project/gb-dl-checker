@@ -52,19 +52,32 @@ while True:
           filesize = os.path.getsize(path)
 
           # Try to match the local file with an entry in the GB API based on its file size
+          
           apidata = None
           for row in apidump:
             if row['best_size_bytes'] and filesize == float(row['best_size_bytes'].replace(',','')):
               apidata = row
+              
               # If Show CSV present do not rename based on API dump
+              
               if not show:
+                  
+                  # Take original filename and rename to the name on the API sheet
+                  
                   filename_normalized = apidata['Filename'].replace("\\", "_")
                   new_path_api = os.path.join(filepath, filename_normalized + '.mp4')
                   os.rename(path, new_path_api)
+                  
+                  # Print file renaming to Console
+
+                  print(filename + ' renamed to ' + filename_normalized)
+                  print ('----------------------------------------')
               break
 
           if apidata:
+          
           # If a show has been specified, check if this video is part of it
+            
             skip = False
             if show:
                 skip = True
@@ -83,7 +96,9 @@ while True:
                 sys.stdout.flush()
       
             else:
+          
           # Check for duplicates
+                
                 for outrow in output:
                     if outrow['external-identifier'] == 'gb-guid:' + apidata['guid']:
                       print(f'\nVideo ID {apidata["guid"]} appears more than once:')
