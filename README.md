@@ -14,6 +14,8 @@ Specifying a Show CSV as well as the API dump will limit the analysis to just th
 ## USAGE
 - Run gb-dl-checker.py (or exe)
 - Choose your downloads folder (either show specific or high-level folder for multiple shows)
-- Choose the location of the API dump CSV file
-- (Optional) If only checking a singular show, choose the location of the show CSV (exported from Giant Bomb Archive show-specific page)
+- (Required) Choose the location of the API dump CSV file
+    - If you do not have this, export a CSV copy of the API dump https://docs.google.com/spreadsheets/d/1MPAHk9RS3yMExC7iX_eM_2W8ljyUXy-nBurjZ2fdU9s/edit)
+- (Optional) If only checking a singular show, choose the location of the show CSV
+    - If you do not have this, export a CSV of the Giant Bomb Archive sheet under the show-specific page)
 - Hit 'Submit' and pray?
