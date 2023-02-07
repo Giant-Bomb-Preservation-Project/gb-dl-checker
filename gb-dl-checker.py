@@ -112,8 +112,8 @@ while True:
                       print(' ', outrow['file'])
                       print(' ', path)
 
-            print('+', end='')
-            sys.stdout.flush()
+                print('+', end='')
+                sys.stdout.flush()
 
           else:
             print('\nNo match for', path, '(Maybe not the highest quality?)')
