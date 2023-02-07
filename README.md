@@ -19,3 +19,5 @@ Specifying a Show CSV as well as the API dump will limit the analysis to just th
 - (Optional) If only checking a singular show, choose the location of the show CSV
     - If you do not have this, export a CSV of the Giant Bomb Archive sheet under the show-specific page)
 - Hit 'Submit' and pray?
+
+![gb-dl-checker-v0.4](https://user-images.githubusercontent.com/18468361/217194477-b20a8d1c-cd6a-490a-b549-99a231b046c2.png)
