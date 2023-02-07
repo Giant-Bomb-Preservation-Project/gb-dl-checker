@@ -64,14 +64,14 @@ while True:
                   
                   # Take original filename and rename to the name on the API sheet
                   
-                  filename_normalized = apidata['Filename'].replace("\\", "_")
+                  filename_normalized = apidata['Filename']
                   new_path_api = os.path.join(filepath, filename_normalized + '.mp4')
                   os.rename(path, new_path_api)
                   
                   # Print file renaming to Console
                   print('     ')
                   print('-------------------------')
-                  print(filename + ' renamed to ' + filename_normalized)
+                  print(filename + ' RENAMED TO ' + filename_normalized)
                   print('-------------------------') 
                   print('     ')  
               break
@@ -87,12 +87,12 @@ while True:
                     if showrow['guid'] == apidata['guid']:
                       showrow['_found_'] = True
                       # Rename files (only runs if Show CSV present)
-                      filename_normalized = apidata['Filename'].replace("\\", "_")
+                      filename_normalized = apidata['Filename']
                       new_path_show = os.path.join(filepath, filename_normalized + '.mp4')
                       os.rename(path, new_path_show)
                       print('     ')
                       print('-------------------------')
-                      print(filename + ' renamed to ' + filename_normalized)
+                      print(filename + ' RENAMED TO ' + filename_normalized)
                       print('-------------------------')  
                       print('     ')  
                       skip = False
