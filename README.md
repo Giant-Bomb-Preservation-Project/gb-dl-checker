@@ -13,11 +13,12 @@ Specifying a Show CSV as well as the API dump will limit the analysis to just th
 
 ## USAGE
 - Run gb-dl-checker.py (or exe)
-- Choose your downloads folder (either show specific or high-level folder for multiple shows)
-- (Required) Choose the location of the API dump CSV file
+- **Videos Folder:** Choose your downloads folder (either show specific or high-level folder for multiple shows)
+- **API CSV:** Choose the location of the API dump CSV file
     - If you do not have this, download it from the releases page or export a CSV copy of the API dump here https://docs.google.com/spreadsheets/d/1MPAHk9RS3yMExC7iX_eM_2W8ljyUXy-nBurjZ2fdU9s/edit)
 - (Optional) If only checking a singular show, you can choose the location of the show CSV. This generally isn't necessary but just in case you need to limit the range!
     - If you do not have this, export a CSV of the Giant Bomb Archive sheet under the show-specific page)
+- **Split uploads into how many CSVs?:** If you're using the Internet Archive CLI to upload then this will let you split your videos across multiple CSVs for simultaneous uploads.
 - Hit 'Submit' and pray
 
 After scanning and renaming has completed a log file will be output to the same directory as the exe
@@ -31,4 +32,4 @@ After scanning and renaming has completed a log file will be output to the same 
 - If you get any errors about renaming or any incomprehensible errors at all it is probably related to the API dump. We've cleaned it up as much as possible but there still may be some weird filename conflicts here and there. Let us know and we'll try to update it.
 
 ## Screenshots
-![gb-dl-checker-v1.0](https://user-images.githubusercontent.com/18468361/217414739-4fef812f-b971-4376-ad1f-a9f382c4a70d.png)
+![gb-dl-checker-v1.0](https://user-images.githubusercontent.com/18468361/217440591-60ad6a5a-ba96-449f-8a75-b237741e3e6c.png)
