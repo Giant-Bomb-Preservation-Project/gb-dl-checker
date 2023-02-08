@@ -31,4 +31,4 @@ After scanning and renaming has completed a log file will be output to the same 
 - If you get any errors about renaming or any incomprehensible errors at all it is probably related to the API dump. We've cleaned it up as much as possible but there still may be some weird filename conflicts here and there. Let us know and we'll try to update it.
 
 
-![gb-dl-checker-v0.4](https://user-images.githubusercontent.com/18468361/217410976-8ebb3629-ddf1-495d-96ad-ee93ca470b41.png)
+![gb-dl-checker-v1.0](https://user-images.githubusercontent.com/18468361/217414739-4fef812f-b971-4376-ad1f-a9f382c4a70d.png)
