@@ -19,7 +19,8 @@ Specifying a Show CSV as well as the API dump will limit the analysis to just th
 - (Optional) If only checking a singular show, you can choose the location of the show CSV. This generally isn't necessary but just in case you need to limit the range!
     - If you do not have this, export a CSV of the Giant Bomb Archive sheet under the show-specific page)
 - Hit 'Submit' and pray
-- After scanning and renaming has completed a log file will be output to the same directory as the exe
+
+After scanning and renaming has completed a log file will be output to the same directory as the exe
 
 ## TROUBLESHOOTING
 
