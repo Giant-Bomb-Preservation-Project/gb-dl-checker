@@ -24,10 +24,12 @@ autoscroll=False),
 ]
 
 # Interface layout
+split_choices = [1, 2, 3, 4, 5, 6, 7, 9, 10]
 controlframe = [
 [sg.Text("Videos Folder: "), sg.Input(), sg.FolderBrowse(key="-GBDIR-")],
 [sg.Text("API CSV: "), sg.Input(), sg.FileBrowse(key="-APICSV-")],
 [sg.Text("Show CSV: "), sg.Input(), sg.FileBrowse(key="-SHOWCSV-")],
+[sg.Text("Split uploads into how many CSVs?: "), sg.Combo(split_choices, default_value = 1, key='-SPLITS-')],
 [sg.Button("Submit")],
 ]
 
@@ -53,7 +55,19 @@ while True:
         video_folder = values["-GBDIR-"]
         apidump_csv = values["-APICSV-"]
         show_csv = values["-SHOWCSV-"]
+
+        # Where the output CSV will be saved (old files will be overwritten).
+        # Can then be passed to the IA CLI with `ia upload --spreadsheet=upload.csv`
+        output_csv = 'upload.csv'
         
+        # Split the output into multiple CSV files to allow running multiple instances
+        # of the IA CLI simultaneously for faster uploads (theoretically... if it doesn't ratelimit)
+        output_parts = values["-SPLITS-"]
+
+        # Optional: Identifier of the archive.org collection, if there is one
+        # (otherwise uploads will have to be moved by an IA admin afterwards)
+        collection_id = 'giant-bomb-archive'
+
         # Define variables for api dump table, show table, and video files path
         apidump = list(csv.DictReader(open(apidump_csv, 'r', encoding='utf-8')))
         show = list(csv.DictReader(open(show_csv, 'r', encoding='utf-8'))) if show_csv else None
@@ -130,6 +144,23 @@ while True:
                       print(' ', outrow['file'])
                       print(' ', path)
 
+                # Assemble all the metadata for the Internet Archive
+                output.append({
+                  'identifier': re.sub('[^\w._-]+', '', os.path.splitext(filename)[0]),
+                  'file': path,
+                  'title': apidata['name'],
+                  'description': apidata['deck'],
+                  'subject[0]': 'Giant Bomb',
+                  'subject[1]': apidata['video_type'],
+                  'subject[2]': apidata['video_show'],
+                  'hosts': apidata['hosts'],
+                  'creator': 'Giant Bomb',
+                  'date': apidata['publish_date'].split(' ')[0],
+                  'collection': collection_id,
+                  'mediatype': 'movies',
+                  'external-identifier': 'gb-guid:' + apidata['guid'],
+                })
+
                 print(' ', end='')
                 sys.stdout.flush()
 
@@ -137,7 +168,7 @@ while True:
           print('\n***[ MISSING ] *** ')
           print(filename, '(Maybe not the highest quality?)')
 
-        print('\n')
+    print('\n')
 
   # Check if whole show was found
     if show:
@@ -157,6 +188,22 @@ while True:
 
     print('')
 
+
+    # WRITE OUTPUT CSV
+    print(len(output), 'files ready to upload')
+
+    for i in range(output_parts):
+      outpath = f'{os.path.splitext(output_csv)[0]}{i+1}.csv' if output_parts > 1 else output_csv
+      start = math.floor(len(output) / output_parts * i)
+      end = math.floor(len(output) / output_parts * (i+1))
+
+      with open(outpath, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=output[0].keys())
+        writer.writeheader()
+        writer.writerows(output[start:end])
+        print('  Saved output to', outpath)
+
+    # Closing logo
     bomber1 = ("               \|/                          ")
     bomber2 = ("             `--+--'                        ")
     bomber3 = ("               /|\                          ")
@@ -197,9 +244,9 @@ while True:
     print(bomber18)
     print(bomber19)
     print(bomber20)
-    
+
     print('Brought to you by Kane & Lynch 3')
-    
+
     # Save sg.Multiline console window to text file
     with open("LogFile.txt", "w", encoding='UTF-8') as f:
       f.write(window['logfile'].get())
