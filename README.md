@@ -4,7 +4,7 @@ Forked from https://gist.github.com/shlubbert/56d4865d1256a3d1a2eeed8c23df7bcb b
 
 Checks Giant Bomb Preservation Project download folders for known filesizes of highest quality videos.
 
-If videos are found they are re-named based on the API Dump/Show CSV. Missing episodes or episodes with lower quality will (hopefully)
+If videos are found they are re-named based on the API Dump/Show CSV. Missing episodes or episodes with lower quality will
 be flagged in the output log.
 
 Loading only the API dump will search and rename files across multiple shows. 
