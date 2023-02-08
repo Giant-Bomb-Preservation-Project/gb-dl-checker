@@ -4,43 +4,62 @@ import PySimpleGUI as sg
 from glob import glob
 import csv, sys, os, math, re
 
-# Redefine default print method to sg.Print (pySimpleGUI)
-print = sg.Print
-
-# Set debug window size
-sg.SetOptions(debug_win_size=(100,50))
-
-# Change theme
+# Change UI theme
 sg.theme("DarkPurple3")
 
-# UI Layout
-layout = [
+### UI Layout ###
+
+# Console window settings
+consoleframe = [
+[sg.Multiline
+(key='logfile',
+size=(500,500),
+font=('Courier New', 10),
+background_color='#4e172e', 
+text_color='#E16363',
+reroute_stdout=True, 
+reroute_stderr=True,
+autoscroll=True),
+]
+]
+
+# Interface layout
+controlframe = [
 [sg.Text("Videos Folder: "), sg.Input(), sg.FolderBrowse(key="-GBDIR-")],
 [sg.Text("API CSV: "), sg.Input(), sg.FileBrowse(key="-APICSV-")],
 [sg.Text("Show CSV: "), sg.Input(), sg.FileBrowse(key="-SHOWCSV-")],
-[sg.Button("Submit")]
-
+[sg.Button("Submit")],
 ]
 
-# Draw window and designate icon
-window = sg.Window("GB DL Checker", layout, size=(500,150), icon='gbsp.ico')
+# Layout call of above elements
+layout = [
+[sg.Column(controlframe, element_justification='center')],
+[sg.HSeparator()],
+[sg.Column(consoleframe, element_justification='center', scrollable=True)]]
 
+# Draw window and designate app icon
+window = sg.Window("GB DL Checker", layout, element_justification='center', finalize=True, size=(900,500), icon='gbsp.ico')
 while True:
     event, values = window.read()
     # End program if user closes window
     if event == "Exit" or event == sg.WIN_CLOSED:
         break
     elif event == "Submit":
+        
+        ### MAIN SCRIPT EXECUTION ###
+
         # Define the path variables from shlubbert's og script with the inputs from the chosen locations 
         video_folder = values["-GBDIR-"]
         apidump_csv = values["-APICSV-"]
         show_csv = values["-SHOWCSV-"]
         
+        # Define variables for api dump table, show table, and video files path
         apidump = list(csv.DictReader(open(apidump_csv, 'r', encoding='utf-8')))
         show = list(csv.DictReader(open(show_csv, 'r', encoding='utf-8'))) if show_csv else None
         video_files = glob(os.path.join(video_folder, '**/*.mp4'), recursive=True)
         output = []
 
+        # Print findings for above variables
         print(len(video_files), 'videos in folder', video_folder)
         print(len(apidump), 'entries in API dump', apidump_csv)
         if show: print(len(show), 'entries in show', show_csv)
@@ -52,49 +71,48 @@ while True:
           filesize = os.path.getsize(path)
 
           # Try to match the local file with an entry in the GB API based on its file size
-          
           apidata = None
           for row in apidump:
             if row['best_size_bytes'] and filesize == float(row['best_size_bytes'].replace(',','')):
               apidata = row
               
               # If Show CSV present do not rename based on API dump
-              
               if not show:
                   
                   # Take original filename and rename to the name on the API sheet
-                  
                   filename_normalized = apidata['Filename']
                   new_path_api = os.path.join(filepath, filename_normalized + '.mp4')
                   os.rename(path, new_path_api)
                   
                   # Print file renaming to Console
-                  print('     ')
-                  print('-------------------------')
-                  print(filename + ' RENAMED TO ' + filename_normalized)
+                  print("     ")
+                  print("-------------------------")
+                  print('FOUND: ' + filename)
+                  print('RENAMED TO: ' + filename_normalized + '.mp4')
                   print('-------------------------') 
-                  print('     ')  
               break
 
           if apidata:
           
           # If a show has been specified, check if this video is part of it
-            
             skip = False
             if show:
                 skip = True
                 for showrow in show:
                     if showrow['guid'] == apidata['guid']:
                       showrow['_found_'] = True
+                      
                       # Rename files (only runs if Show CSV present)
                       filename_normalized = apidata['Filename']
                       new_path_show = os.path.join(filepath, filename_normalized + '.mp4')
                       os.rename(path, new_path_show)
+                      
+                      # Print file renaming to Console
                       print('     ')
                       print('-------------------------')
-                      print(filename + ' RENAMED TO ' + filename_normalized)
+                      print('FOUND: ' + filename)
+                      print('RENAMED TO: ' + filename_normalized + '.mp4')
                       print('-------------------------')  
-                      print('     ')  
                       skip = False
                       break
 
@@ -105,25 +123,22 @@ while True:
             else:
           
           # Check for duplicates
-                
                 for outrow in output:
                     if outrow['external-identifier'] == 'gb-guid:' + apidata['guid']:
                       print(f'\nVideo ID {apidata["guid"]} appears more than once:')
                       print(' ', outrow['file'])
                       print(' ', path)
 
-                print('+', end='')
+                print(' ', end='')
                 sys.stdout.flush()
 
-          else:
-            print('\nNo match for', path, '(Maybe not the highest quality?)')
+        else:
+          print('\n***[ MISSING ] *** ')
+          print(filename, '(Maybe not the highest quality?)')
 
-    print('\n')
+        print('\n')
 
-    #
-    # CHECK IF WHOLE SHOW WAS FOUND
-    #
-
+  # Check if whole show was found
     if show:
       foundcount = 0
       notfound = []
@@ -139,7 +154,7 @@ while True:
         for row in notfound:
           print(' ', row['guid'], row['name'])
 
-      print('')
+    print('')
 
     bomber1 = ("               \|/                          ")
     bomber2 = ("             `--+--'                        ")
@@ -161,26 +176,29 @@ while True:
     bomber18 = ("    `.###########(   | )###,'               ")
     bomber19 = ("       `._#######(__/###_,'                 ")
     bomber20 = ("          `--..####..--'")
-    sg.Print(bomber1)
-    sg.Print(bomber2)
-    sg.Print(bomber3)
-    sg.Print(bomber4)
-    sg.Print(bomber5)
-    sg.Print(bomber6)
-    sg.Print(bomber7)
-    sg.Print(bomber8)
-    sg.Print(bomber9)
-    sg.Print(bomber10)
-    sg.Print(bomber11)
-    sg.Print(bomber12)
-    sg.Print(bomber13)
-    sg.Print(bomber14)
-    sg.Print(bomber15)
-    sg.Print(bomber16)
-    sg.Print(bomber17)
-    sg.Print(bomber18)
-    sg.Print(bomber19)
-    sg.Print(bomber20)
-
+    print(bomber1)
+    print(bomber2)
+    print(bomber3)
+    print(bomber4)
+    print(bomber5)
+    print(bomber6)
+    print(bomber7)
+    print(bomber8)
+    print(bomber9)
+    print(bomber10)
+    print(bomber11)
+    print(bomber12)
+    print(bomber13)
+    print(bomber14)
+    print(bomber15)
+    print(bomber16)
+    print(bomber17)
+    print(bomber18)
+    print(bomber19)
+    print(bomber20)
     
-    sg.Print('Brought to you by Kane & Lynch 3', do_not_reroute_stdout=False)
+    print('Brought to you by Kane & Lynch 3')
+    
+    # Save sg.Multiline console window to text file
+    with open("LogFile.txt", "w", encoding='UTF-8') as f:
+      f.write(window['logfile'].get())
