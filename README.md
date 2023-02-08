@@ -20,4 +20,4 @@ Specifying a Show CSV as well as the API dump will limit the analysis to just th
     - If you do not have this, export a CSV of the Giant Bomb Archive sheet under the show-specific page)
 - Hit 'Submit' and pray?
 
-![gb-dl-checker-v0.4](https://user-images.githubusercontent.com/18468361/217194693-32ddb62b-f144-4c32-b91b-ccfb55817620.png)
+![gb-dl-checker-v0.4](https://user-images.githubusercontent.com/18468361/217407578-bc0af660-7b09-4b40-a237-8470cfb09894.png)
