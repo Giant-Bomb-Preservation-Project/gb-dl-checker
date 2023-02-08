@@ -13,13 +13,13 @@ sg.theme("DarkPurple3")
 consoleframe = [
 [sg.Multiline
 (key='logfile',
-size=(500,500),
+size=(125,100),
 font=('Courier New', 10),
 background_color='#4e172e', 
 text_color='#E16363',
 reroute_stdout=True, 
 reroute_stderr=True,
-autoscroll=True),
+autoscroll=False),
 ]
 ]
 
@@ -34,11 +34,12 @@ controlframe = [
 # Layout call of above elements
 layout = [
 [sg.Column(controlframe, element_justification='center')],
-[sg.HSeparator()],
-[sg.Column(consoleframe, element_justification='center', scrollable=True)]]
+[sg.HSeparator(color='#E16363')],
+[sg.Column(consoleframe, element_justification='center')]]
 
 # Draw window and designate app icon
-window = sg.Window("GB DL Checker", layout, element_justification='center', finalize=True, size=(900,500), icon='gbsp.ico')
+window = sg.Window("GB DL Checker", layout, element_justification='center', finalize=True, size=(800,500), icon='gbsp.ico')
+
 while True:
     event, values = window.read()
     # End program if user closes window
