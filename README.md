@@ -1,6 +1,6 @@
 # gb-dl-checker
 
-Forked from https://gist.github.com/shlubbert/56d4865d1256a3d1a2eeed8c23df7bcb 
+Forked from https://gist.github.com/shlubbert/56d4865d1256a3d1a2eeed8c23df7bcb by shlubbert
 
 Checks Giant Bomb Preservation Project download folders for known filesizes of highest quality videos.
 
