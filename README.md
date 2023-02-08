@@ -20,4 +20,13 @@ Specifying a Show CSV as well as the API dump will limit the analysis to just th
     - If you do not have this, export a CSV of the Giant Bomb Archive sheet under the show-specific page)
 - Hit 'Submit' and pray?
 
+## TROUBLESHOOTING
+
+- Both Chrome and Windows will flag the .exe for various reasons. It's safe. the source code is here to look at. You can install Python and run the .py file  through the command line if you're wary.
+
+- If you run into permissions errors make sure you're running the app somewhere your account has permissions. That means stay out of system folders! Just use the 'ol desktop preferably
+
+- If you get any errors about renaming or any incomprehensible errors at all it is probably related to the API dump. We've cleaned it up as much as possible but there still may be some weird filename conflicts here and there. Let us know and we'll try to update it.
+
+
 ![gb-dl-checker-v0.4](https://user-images.githubusercontent.com/18468361/217410976-8ebb3629-ddf1-495d-96ad-ee93ca470b41.png)
