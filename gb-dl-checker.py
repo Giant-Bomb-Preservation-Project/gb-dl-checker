@@ -60,7 +60,10 @@ while True:
 
         # Where the output CSV will be saved (old files will be overwritten).
         # Can then be passed to the IA CLI with `ia upload --spreadsheet=upload.csv`
-        output_csv = values["-UPLOADCSV-"]
+        if values["-ADMIN-"]:
+          output_csv = values["-UPLOADCSV-"]
+        else:
+          output_csv = (os.getcwd() + 'upload.csv')
         
         # Split the output into multiple CSV files to allow running multiple instances
         # of the IA CLI simultaneously for faster uploads (theoretically... if it doesn't ratelimit)
@@ -71,7 +74,7 @@ while True:
         if values["-ADMIN-"] == True:
           collection_id = 'giant-bomb-archive'
         else:
-          collection_id = ''
+          collection_id = 'opensource_movies'
 
 
         # Define variables for api dump table, show table, and video files path

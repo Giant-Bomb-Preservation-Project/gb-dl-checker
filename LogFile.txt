@@ -1,0 +1,66 @@
+7 videos in folder C:/Users/muffi/Desktop/gbtest/Giant Bomb Makes Mario
+16714 entries in API dump C:/Users/muffi/Desktop/APIdump.csv
+7 entries in show C:/Users/muffi/Desktop/gbmm.csv
+
+     
+-------------------------
+FOUND: 2015-09-23-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario.mp4
+RENAMED TO: 2015-09-23-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario.mp4
+-------------------------
+      
+-------------------------
+FOUND: 2015-10-07-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_-_Part_02.mp4
+RENAMED TO: 2015-10-07-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_-_Part_02.mp4
+-------------------------
+      
+-------------------------
+FOUND: 2016-03-10-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_-_Part_03.mp4
+RENAMED TO: 2016-03-10-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_-_Part_03.mp4
+-------------------------
+      
+-------------------------
+FOUND: 2016-03-24-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_-_Part_04.mp4
+RENAMED TO: 2016-03-24-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_-_Part_04.mp4
+-------------------------
+      
+-------------------------
+FOUND: 2018-12-19-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_Again.mp4
+RENAMED TO: 2018-12-19-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_Again.mp4
+-------------------------
+      
+-------------------------
+FOUND: 2019-03-21-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_Again_II.mp4
+RENAMED TO: 2019-03-21-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_Again_II.mp4
+-------------------------
+      
+-------------------------
+FOUND: 2020-05-15-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_-_The_Final_Update_Episode_01.mp4
+RENAMED TO: 2020-05-15-Giant_Bomb_Makes_Mario-Giant_Bomb_Makes_Mario_-_The_Final_Update_Episode_01.mp4
+-------------------------
+ 
+
+All show entries were found locally!
+
+7 files ready to upload
+  Saved output to C:\Users\muffi\Desktop\GBChecker\gb-dl-checkerupload.csv
+               \|/                          
+             `--+--'                        
+               /|\                          
+              ' | '                         
+            ,--'#`--.                       
+            |#######|                       
+         _.-'#######`-._                    
+      ,-'###############`-.                 
+     '#####################`,               
+   /####### @ @###### @ @###\           
+  |######(@    @####@    @####|             
+ |#######(@ (X) @###@ (X) @####|            
+ |#########@   @#####@   @#####|            
+ |#############################|            
+ |########) [][][][][][] )#####|            
+  |######### (    \     )#####|             
+   \############(   \   )###/              
+    `.###########(   | )###,'               
+       `._#######(__/###_,'                 
+          `--..####..--'
+Brought to you by Kane & Lynch 3
