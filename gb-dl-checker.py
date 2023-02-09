@@ -31,6 +31,7 @@ controlframe = [
 [sg.Text("Show CSV: "), sg.Input(), sg.FileBrowse(key="-SHOWCSV-")],
 [sg.Text("Upload CSV Output Directory: "), sg.Input(), sg.FileSaveAs(button_text='Browse', file_types=[("CSV Files", "*.csv", )], key="-UPLOADCSV-")],
 [sg.Text("Split uploads into how many CSVs?: "), sg.Combo(split_choices, default_value = 1, key='-SPLITS-')],
+[sg.Checkbox(text="Collection admin", key='-ADMIN-')],
 [sg.Button("Submit", size=(15,1))],
 ]
 
@@ -67,7 +68,11 @@ while True:
 
         # Optional: Identifier of the archive.org collection, if there is one
         # (otherwise uploads will have to be moved by an IA admin afterwards)
-        collection_id = 'giant-bomb-archive'
+        if values["-ADMIN-"] == True:
+          collection_id = 'giant-bomb-archive'
+        else:
+          collection_id = ''
+
 
         # Define variables for api dump table, show table, and video files path
         apidump = list(csv.DictReader(open(apidump_csv, 'r', encoding='utf-8')))
