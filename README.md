@@ -34,7 +34,7 @@ This will let you split your videos across multiple CSVs for simultaneous upload
 
 - Hit 'Submit' and pray
 
-After scanning and renaming has completed a log file will be output to the same directory as the exe
+After scanning and renaming has completed a log file will be output as `LogFile.txt` to the same directory as the exe
 
 ## Requirements (Python only)
 PySimpleGUI
