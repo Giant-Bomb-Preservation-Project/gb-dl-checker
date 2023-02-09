@@ -24,7 +24,7 @@ autoscroll=False),
 ]
 
 # Interface layout
-split_choices = [1, 2, 3, 4, 5, 6, 7, 9, 10]
+split_choices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 controlframe = [
 [sg.Text("Videos Folder: "), sg.Input(), sg.FolderBrowse(key="-GBDIR-")],
 [sg.Text("API CSV: "), sg.Input(), sg.FileBrowse(key="-APICSV-")],
@@ -37,7 +37,7 @@ csv_frame = [
 ]
 
 collection_frame = [
-[sg.Text("Which collection?"), sg.Radio("giant-bomb-archive", "Radio1", key='-GBID-'), sg.Radio ("opensource_movies", "Radio 1", key='-OSID-'), sg.Radio("custom", "Radio1", key='-CUST-')],
+[sg.Text("Which collection?"), sg.Radio("giant-bomb-archive", "Radio1", key='-GBID-'), sg.Radio ("opensource_movies", "Radio1", key='-OSID-'), sg.Radio("custom", "Radio1", key='-CUST-')],
 [sg.Text("Custom id: "), sg.Input(size=(25,5), key='-CID-')],
 # [sg.Checkbox(text="Collection admin", key='-ADMIN-')],
 [sg.Button("Submit", size=(10,1))],
