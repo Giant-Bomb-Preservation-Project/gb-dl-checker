@@ -30,7 +30,7 @@ Choose the location of the API dump CSV file
 > **Split uploads into how many CSVs?:**
 This will let you split your videos across multiple CSVs for simultaneous uploads. We recommend this if you have good upload speed because Archive.org doesn't go very fast. A setting of ``1`` will not split them.
 
-> **Which collection?:** This chooses which collection on Archive.org to upload to.  Admins can use `giant-bomb-archive` but not everyone will be admins. Regular uploaders will use a `opensource_movies` and will have their uploads moved into a collection later by Archive.org admins.
+> **Which collection?:** This chooses which collection on Archive.org to upload to.  Admins can use `giant-bomb-archive` but not everyone will be admins. Regular uploaders will use a `opensource_movies` and will have their uploads moved into a collection later by Archive.org admins. If you don't know if you're an admin you probably aren't so stick with `opensource_movies`
 
 - Hit 'Submit' and pray
 
