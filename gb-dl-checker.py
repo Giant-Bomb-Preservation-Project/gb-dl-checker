@@ -29,8 +29,9 @@ controlframe = [
 [sg.Text("Videos Folder: "), sg.Input(), sg.FolderBrowse(key="-GBDIR-")],
 [sg.Text("API CSV: "), sg.Input(), sg.FileBrowse(key="-APICSV-")],
 [sg.Text("Show CSV: "), sg.Input(), sg.FileBrowse(key="-SHOWCSV-")],
+[sg.Text("Upload CSV Output Directory: "), sg.Input(), sg.FileSaveAs(button_text='Browse', file_types=[("CSV Files", "*.csv", )], key="-UPLOADCSV-")],
 [sg.Text("Split uploads into how many CSVs?: "), sg.Combo(split_choices, default_value = 1, key='-SPLITS-')],
-[sg.Button("Submit")],
+[sg.Button("Submit", size=(15,1))],
 ]
 
 # Layout call of above elements
@@ -58,7 +59,7 @@ while True:
 
         # Where the output CSV will be saved (old files will be overwritten).
         # Can then be passed to the IA CLI with `ia upload --spreadsheet=upload.csv`
-        output_csv = 'upload.csv'
+        output_csv = values["-UPLOADCSV-"]
         
         # Split the output into multiple CSV files to allow running multiple instances
         # of the IA CLI simultaneously for faster uploads (theoretically... if it doesn't ratelimit)
@@ -137,7 +138,7 @@ while True:
       
             else:
           
-          # Check for duplicates
+                # Check for duplicates
                 for outrow in output:
                     if outrow['external-identifier'] == 'gb-guid:' + apidata['guid']:
                       print(f'\nVideo ID {apidata["guid"]} appears more than once:')
@@ -164,13 +165,13 @@ while True:
                 print(' ', end='')
                 sys.stdout.flush()
 
-        else:
-          print('\n***[ MISSING ] *** ')
-          print(filename, '(Maybe not the highest quality?)')
+          else:
+            print('\n***[ MISSING ] *** ')
+            print(filename, '(Maybe not the highest quality?)')
 
     print('\n')
 
-  # Check if whole show was found
+    # Check if whole show was found
     if show:
       foundcount = 0
       notfound = []
@@ -186,7 +187,7 @@ while True:
         for row in notfound:
           print(' ', row['guid'], row['name'])
 
-    print('')
+      print('')
 
 
     # WRITE OUTPUT CSV
