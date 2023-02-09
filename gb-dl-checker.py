@@ -74,7 +74,7 @@ while True:
         if values["-ADMIN-"] == True:
           collection_id = 'giant-bomb-archive'
         else:
-          collection_id = 'opensource_movies'
+          collection_id = 'community'
 
 
         # Define variables for api dump table, show table, and video files path
@@ -160,8 +160,7 @@ while True:
                   'title': apidata['name'],
                   'description': apidata['deck'],
                   'subject[0]': 'Giant Bomb',
-                  'subject[1]': apidata['video_type'],
-                  'subject[2]': apidata['video_show'],
+                  'subject[1]': apidata['video_show'],
                   'hosts': apidata['hosts'],
                   'creator': 'Giant Bomb',
                   'date': apidata['publish_date'].split(' ')[0],
