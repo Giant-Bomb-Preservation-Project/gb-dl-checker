@@ -22,7 +22,7 @@ Choose the location of the API dump CSV file
     - If you do not have this, download it from the [releases page](https://github.com/muffinsAKA/gb-dl-checker/releases/tag/API-Dump-1.0) or export a CSV copy of the API dump here https://docs.google.com/spreadsheets/d/1MPAHk9RS3yMExC7iX_eM_2W8ljyUXy-nBurjZ2fdU9s/edit)
 
 
-> (Optional) **Show CSV:** If only checking a singular show, you can choose the location of the show CSV. This generally isn't necessary but just in case you need to limit the range!
+> **Show CSV:** Tells the tool how many episodes are expected for the show and to alert if any are missing.
     - If you do not have this, export a CSV of the Giant Bomb Archive sheet under the show-specific page)
 
 > **Upload CSV Output Directory:** Where the CSV(s) that will be used to batch upload to Archive.org will be saved/named.
