@@ -25,19 +25,32 @@ autoscroll=False),
 
 # Interface layout
 split_choices = [1, 2, 3, 4, 5, 6, 7, 9, 10]
+id_check = ['admin', 'uploader']
 controlframe = [
 [sg.Text("Videos Folder: "), sg.Input(), sg.FolderBrowse(key="-GBDIR-")],
 [sg.Text("API CSV: "), sg.Input(), sg.FileBrowse(key="-APICSV-")],
 [sg.Text("Show CSV: "), sg.Input(), sg.FileBrowse(key="-SHOWCSV-")],
+]
+
+csv_frame = [
 [sg.Text("Upload CSV Output Directory: "), sg.Input(), sg.FileSaveAs(button_text='Browse', file_types=[("CSV Files", "*.csv", )], key="-UPLOADCSV-")],
 [sg.Text("Split uploads into how many CSVs?: "), sg.Combo(split_choices, default_value = 1, key='-SPLITS-')],
-[sg.Checkbox(text="Collection admin", key='-ADMIN-')],
-[sg.Button("Submit", size=(15,1))],
+]
+
+collection_frame = [
+[sg.Text("Which collection?"), sg.Radio("giant-bomb-archive", "Radio1", key='-GBID-'), sg.Radio("custom", "Radio1", key='-CUST-')],
+[sg.Text("Custom id: "), sg.Input(size=(25,5), key='-CID-')],
+# [sg.Checkbox(text="Collection admin", key='-ADMIN-')],
+[sg.Button("Submit", size=(10,1))],
 ]
 
 # Layout call of above elements
 layout = [
 [sg.Column(controlframe, element_justification='center')],
+[sg.HSeparator(color='#E16363')],
+[sg.Column(csv_frame, element_justification='center')],
+[sg.HSeparator(color='#E16363')],
+[sg.Column(collection_frame, element_justification='center')],
 [sg.HSeparator(color='#E16363')],
 [sg.Column(consoleframe, element_justification='center')]]
 
@@ -60,10 +73,10 @@ while True:
 
         # Where the output CSV will be saved (old files will be overwritten).
         # Can then be passed to the IA CLI with `ia upload --spreadsheet=upload.csv`
-        if values["-ADMIN-"]:
+        if values["-UPLOADCSV-"] != '':
           output_csv = values["-UPLOADCSV-"]
         else:
-          output_csv = (os.getcwd() + 'upload.csv')
+          output_csv = (os.getcwd() + '\\upload.csv')
         
         # Split the output into multiple CSV files to allow running multiple instances
         # of the IA CLI simultaneously for faster uploads (theoretically... if it doesn't ratelimit)
@@ -71,10 +84,13 @@ while True:
 
         # Optional: Identifier of the archive.org collection, if there is one
         # (otherwise uploads will have to be moved by an IA admin afterwards)
-        if values["-ADMIN-"] == True:
+        if values["-GBID-"] == True:
           collection_id = 'giant-bomb-archive'
+        elif values["-CUST-"] == True:
+          collection_id = values["-CID-"]
         else:
-          collection_id = 'community'
+          collection_id = ''
+
 
 
         # Define variables for api dump table, show table, and video files path
