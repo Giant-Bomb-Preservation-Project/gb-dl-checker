@@ -36,6 +36,11 @@ This will let you split your videos across multiple CSVs for simultaneous upload
 
 After scanning and renaming has completed a log file will be output to the same directory as the exe
 
+## Requirements (Python only)
+PySimpleGUI
+
+``pip install pysimplegui``
+
 ## TROUBLESHOOTING
 
 - Both Chrome and Windows will flag the .exe for various reasons. It's safe. the source code is here to look at. You can install Python and run the .py file  through the command line if you're wary.
