@@ -38,7 +38,7 @@ csv_frame = [
 ]
 
 collection_frame = [
-[sg.Text("Which collection?"), sg.Radio("giant-bomb-archive", "Radio1", key='-GBID-'), sg.Radio ("opensource_video", "Radio 1", key='-OSID-'), sg.Radio("custom", "Radio1", key='-CUST-')],
+[sg.Text("Which collection?"), sg.Radio("giant-bomb-archive", "Radio1", key='-GBID-'), sg.Radio ("opensource_movies", "Radio 1", key='-OSID-'), sg.Radio("custom", "Radio1", key='-CUST-')],
 [sg.Text("Custom id: "), sg.Input(size=(25,5), key='-CID-')],
 # [sg.Checkbox(text="Collection admin", key='-ADMIN-')],
 [sg.Button("Submit", size=(10,1))],
