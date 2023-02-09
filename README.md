@@ -25,10 +25,12 @@ Choose the location of the API dump CSV file
 > (Optional) **Show CSV:** If only checking a singular show, you can choose the location of the show CSV. This generally isn't necessary but just in case you need to limit the range!
     - If you do not have this, export a CSV of the Giant Bomb Archive sheet under the show-specific page)
 
+> **Upload CSV Output Directory:** Where the CSV(s) that will be used to batch upload to Archive.org will be saved/named.
 
 > **Split uploads into how many CSVs?:**
-If you're using the Internet Archive CLI to upload then this will let you split your videos across multiple CSVs for simultaneous uploads. A setting of ``1`` will not split them.
+This will let you split your videos across multiple CSVs for simultaneous uploads. We recommend this if you have good upload speed because Archive.org doesn't go very fast. A setting of ``1`` will not split them.
 
+> **Which collection?:** This chooses which collection on Archive.org to upload to.  Admins can use `giant-bomb-archive` but not everyone will be admins. Regular uploaders will use a TBD custom id.
 
 - Hit 'Submit' and pray
 
