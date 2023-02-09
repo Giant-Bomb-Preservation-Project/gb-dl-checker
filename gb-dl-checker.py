@@ -13,7 +13,7 @@ sg.theme("DarkPurple3")
 consoleframe = [
 [sg.Multiline
 (key='logfile',
-size=(125,100),
+size=(125,120),
 font=('Courier New', 10),
 background_color='#4e172e', 
 text_color='#E16363',
@@ -55,7 +55,7 @@ layout = [
 [sg.Column(consoleframe, element_justification='center')]]
 
 # Draw window and designate app icon
-window = sg.Window("GB DL Checker", layout, element_justification='center', finalize=True, size=(800,500), icon='gbsp.ico')
+window = sg.Window("GB DL Checker", layout, element_justification='center', finalize=True, size=(700,600), icon='gbsp.ico')
 
 while True:
     event, values = window.read()
