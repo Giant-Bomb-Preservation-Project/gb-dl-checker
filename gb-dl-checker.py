@@ -2,7 +2,7 @@
 
 import PySimpleGUI as sg
 from glob import glob
-import csv, sys, os, math, re
+import csv, sys, os, math, re, random, string
 
 # Change UI theme
 sg.theme("DarkPurple3")
@@ -38,7 +38,7 @@ csv_frame = [
 ]
 
 collection_frame = [
-[sg.Text("Which collection?"), sg.Radio("giant-bomb-archive", "Radio1", key='-GBID-'), sg.Radio("custom", "Radio1", key='-CUST-')],
+[sg.Text("Which collection?"), sg.Radio("giant-bomb-archive", "Radio1", key='-GBID-'), sg.Radio ("opensource_video", "Radio 1", key='-OSID-'), sg.Radio("custom", "Radio1", key='-CUST-')],
 [sg.Text("Custom id: "), sg.Input(size=(25,5), key='-CID-')],
 # [sg.Checkbox(text="Collection admin", key='-ADMIN-')],
 [sg.Button("Submit", size=(10,1))],
@@ -86,6 +86,8 @@ while True:
         # (otherwise uploads will have to be moved by an IA admin afterwards)
         if values["-GBID-"] == True:
           collection_id = 'giant-bomb-archive'
+        elif values["-OSID-"] == True:
+          collection_id = values["opensource_movies"]
         elif values["-CUST-"] == True:
           collection_id = values["-CID-"]
         else:
@@ -170,8 +172,9 @@ while True:
                       print(' ', path)
 
                 # Assemble all the metadata for the Internet Archive
+                randomint = random.randint(1000,9999)
                 output.append({
-                  'identifier': re.sub('[^\w._-]+', '', os.path.splitext(filename)[0]),
+                  'identifier': re.sub('[^\w._-]+', '', os.path.splitext(filename)[0]) + '-ID' + ''.join(random.choices(string.ascii_uppercase + string.digits, k=6)),
                   'file': path,
                   'title': apidata['name'],
                   'description': apidata['deck'],
