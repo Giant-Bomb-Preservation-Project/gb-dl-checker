@@ -25,7 +25,6 @@ autoscroll=False),
 
 # Interface layout
 split_choices = [1, 2, 3, 4, 5, 6, 7, 9, 10]
-id_check = ['admin', 'uploader']
 controlframe = [
 [sg.Text("Videos Folder: "), sg.Input(), sg.FolderBrowse(key="-GBDIR-")],
 [sg.Text("API CSV: "), sg.Input(), sg.FileBrowse(key="-APICSV-")],
