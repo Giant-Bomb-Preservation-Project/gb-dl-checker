@@ -87,7 +87,7 @@ while True:
         if values["-GBID-"] == True:
           collection_id = 'giant-bomb-archive'
         elif values["-OSID-"] == True:
-          collection_id = values["opensource_movies"]
+          collection_id = 'opensource_movies'
         elif values["-CUST-"] == True:
           collection_id = values["-CID-"]
         else:
