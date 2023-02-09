@@ -23,7 +23,7 @@ Choose the location of the API dump CSV file
 
 
 > **Show CSV:** Tells the tool how many episodes are expected for the show and to alert if any are missing.
-- If you do not have this, export a CSV of the Giant Bomb Archive sheet under the show-specific page)
+- If you do not have this, export a CSV of the Giant Bomb Archive sheet (found in #links-and-resources on Discord) under the show-specific page.
 
 > **Upload CSV Output Directory:** Where the CSV(s) that will be used to batch upload to Archive.org will be saved/named.
 
