@@ -171,9 +171,8 @@ while True:
                       print(' ', path)
 
                 # Assemble all the metadata for the Internet Archive
-                randomint = random.randint(1000,9999)
                 output.append({
-                  'identifier': re.sub('[^\w._-]+', '', os.path.splitext(filename)[0]) + '-ID' + ''.join(random.choices(string.ascii_uppercase + string.digits, k=6)),
+                  'identifier': 'gb-' + apidata['guid'] + '-ID' + ''.join(random.choices(string.ascii_uppercase + string.digits, k=5)),
                   'file': path,
                   'title': apidata['name'],
                   'description': apidata['deck'],
