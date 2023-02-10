@@ -39,7 +39,6 @@ csv_frame = [
 collection_frame = [
 [sg.Text("Which collection?"), sg.Radio("giant-bomb-archive", "Radio1", key='-GBID-'), sg.Radio ("opensource_movies", "Radio1", key='-OSID-'), sg.Radio("custom", "Radio1", key='-CUST-')],
 [sg.Text("Custom id: "), sg.Input(size=(25,5), key='-CID-')],
-# [sg.Checkbox(text="Collection admin", key='-ADMIN-')],
 [sg.Button("Submit", size=(10,1))],
 ]
 
@@ -219,8 +218,8 @@ while True:
 
     for i in range(output_parts):
       outpath = f'{os.path.splitext(output_csv)[0]}{i+1}.csv' if output_parts > 1 else output_csv
-      start = math.floor(len(output) / output_parts * i)
-      end = math.floor(len(output) / output_parts * (i+1))
+      start = math.ceil(len(output) / output_parts * i)
+      end = math.ceil(len(output) / output_parts * (i+1))
 
       with open(outpath, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=output[0].keys())
