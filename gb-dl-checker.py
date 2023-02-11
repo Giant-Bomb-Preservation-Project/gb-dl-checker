@@ -3,6 +3,7 @@
 import PySimpleGUI as sg
 from glob import glob
 import csv, sys, os, math, re, random, string
+import subprocess
 
 # Change UI theme
 sg.theme("DarkPurple3")
@@ -39,7 +40,7 @@ csv_frame = [
 collection_frame = [
 [sg.Text("Which collection?"), sg.Radio("giant-bomb-archive", "Radio1", key='-GBID-'), sg.Radio ("opensource_movies", "Radio1", key='-OSID-'), sg.Radio("custom", "Radio1", key='-CUST-')],
 [sg.Text("Custom id: "), sg.Input(size=(25,5), key='-CID-')],
-[sg.Button("Submit", size=(10,1))],
+[sg.Button("Submit", size=(10,1)), sg.Button("Upload", size=(10,1))],
 ]
 
 # Layout call of above elements
@@ -192,85 +193,98 @@ while True:
             print('\n***[ MISSING ] *** ')
             print(filename, '(Maybe not the highest quality?)')
 
-    print('\n')
+        print('\n')
 
-    # Check if whole show was found
-    if show:
-      foundcount = 0
-      notfound = []
+        # Check if whole show was found
+        if show:
+          foundcount = 0
+          notfound = []
 
-      for row in show:
-        if '_found_' in row: foundcount += 1
-        else: notfound.append(row)
+          for row in show:
+            if '_found_' in row: foundcount += 1
+            else: notfound.append(row)
 
-      if foundcount == len(show):
-        print('All show entries were found locally!')
-      else:
-        print(len(show)-foundcount, 'entries from', show_csv, 'were missing locally:')
-        for row in notfound:
-          print(' ', row['guid'], row['name'])
+          if foundcount == len(show):
+            print('All show entries were found locally!')
+          else:
+            print(len(show)-foundcount, 'entries from', show_csv, 'were missing locally:')
+            for row in notfound:
+              print(' ', row['guid'], row['name'])
 
-      print('')
+          print('')
 
 
-    # WRITE OUTPUT CSV
-    print(len(output), 'files ready to upload')
+        # WRITE OUTPUT CSV
+        print(len(output), 'files ready to upload')
 
-    for i in range(output_parts):
-      outpath = f'{os.path.splitext(output_csv)[0]}{i+1}.csv' if output_parts > 1 else output_csv
-      start = math.ceil(len(output) / output_parts * i)
-      end = math.ceil(len(output) / output_parts * (i+1))
+        for i in range(output_parts):
+          outpath = f'{os.path.splitext(output_csv)[0]}{i+1}.csv' if output_parts > 1 else output_csv
+          start = math.ceil(len(output) / output_parts * i)
+          end = math.ceil(len(output) / output_parts * (i+1))
 
-      with open(outpath, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=output[0].keys())
-        writer.writeheader()
-        writer.writerows(output[start:end])
-        print('  Saved output to', outpath)
+          with open(outpath, 'w', newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=output[0].keys())
+            writer.writeheader()
+            writer.writerows(output[start:end])
+            print('  Saved output to', outpath)
 
-    # Closing logo
-    bomber1 = ("               \|/                          ")
-    bomber2 = ("             `--+--'                        ")
-    bomber3 = ("               /|\                          ")
-    bomber4 = ("              ' | '                         ")
-    bomber5 = ("            ,--'#`--.                       ")
-    bomber6 = ("            |#######|                       ")
-    bomber7 = ("         _.-'#######`-._                    ")
-    bomber8 = ("      ,-'###############`-.                 ")
-    bomber9 = ("     '#####################`,               ")
-    bomber10 = ("   /####### @ @###### @ @###\           ")              
-    bomber11 = ("  |######(@    @####@    @####|             ")
-    bomber12 = (" |#######(@ (X) @###@ (X) @####|            ")
-    bomber13 = (" |#########@   @#####@   @#####|            ")
-    bomber14 = (" |#############################|            ")
-    bomber15 = (" |########) [][][][][][] )#####|            ")
-    bomber16 = ("  |######### (    \     )#####|             ")
-    bomber17 = ("   \############(   \   )###/              ")
-    bomber18 = ("    `.###########(   | )###,'               ")
-    bomber19 = ("       `._#######(__/###_,'                 ")
-    bomber20 = ("          `--..####..--'")
-    print(bomber1)
-    print(bomber2)
-    print(bomber3)
-    print(bomber4)
-    print(bomber5)
-    print(bomber6)
-    print(bomber7)
-    print(bomber8)
-    print(bomber9)
-    print(bomber10)
-    print(bomber11)
-    print(bomber12)
-    print(bomber13)
-    print(bomber14)
-    print(bomber15)
-    print(bomber16)
-    print(bomber17)
-    print(bomber18)
-    print(bomber19)
-    print(bomber20)
+        # Closing logo
+        bomber1 = ("               \|/                          ")
+        bomber2 = ("             `--+--'                        ")
+        bomber3 = ("               /|\                          ")
+        bomber4 = ("              ' | '                         ")
+        bomber5 = ("            ,--'#`--.                       ")
+        bomber6 = ("            |#######|                       ")
+        bomber7 = ("         _.-'#######`-._                    ")
+        bomber8 = ("      ,-'###############`-.                 ")
+        bomber9 = ("     '#####################`,               ")
+        bomber10 = ("   /####### @ @###### @ @###\           ")              
+        bomber11 = ("  |######(@    @####@    @####|             ")
+        bomber12 = (" |#######(@ (X) @###@ (X) @####|            ")
+        bomber13 = (" |#########@   @#####@   @#####|            ")
+        bomber14 = (" |#############################|            ")
+        bomber15 = (" |########) [][][][][][] )#####|            ")
+        bomber16 = ("  |######### (    \     )#####|             ")
+        bomber17 = ("   \############(   \   )###/              ")
+        bomber18 = ("    `.###########(   | )###,'               ")
+        bomber19 = ("       `._#######(__/###_,'                 ")
+        bomber20 = ("          `--..####..--'")
+        print(bomber1)
+        print(bomber2)
+        print(bomber3)
+        print(bomber4)
+        print(bomber5)
+        print(bomber6)
+        print(bomber7)
+        print(bomber8)
+        print(bomber9)
+        print(bomber10)
+        print(bomber11)
+        print(bomber12)
+        print(bomber13)
+        print(bomber14)
+        print(bomber15)
+        print(bomber16)
+        print(bomber17)
+        print(bomber18)
+        print(bomber19)
+        print(bomber20)
 
-    print('Brought to you by Kane & Lynch 3')
+        print('Brought to you by Kane & Lynch 3')
 
-    # Save sg.Multiline console window to text file
-    with open("LogFile.txt", "w", encoding='UTF-8') as f:
-      f.write(window['logfile'].get())
+        # Save sg.Multiline console window to text file
+        with open("LogFile.txt", "w", encoding='UTF-8') as f:
+          f.write(window['logfile'].get())
+    elif event == "Upload":
+      outpath_manager = f'{os.path.splitext(output_csv)[0]}_upload_manager.bat'
+      if os.path.exists(outpath_manager):
+        os.remove(outpath_manager)
+      for i in range(output_parts):
+        outpath_bat = f'{os.path.splitext(output_csv)[0]}{i+1}.bat' if output_parts > 1 else f'{os.path.splitext(output_csv)[0]}.bat'       
+        outpath_csv = f'{os.path.splitext(output_csv)[0]}{i+1}.csv' if output_parts > 1 else output_csv
+        with open(outpath_bat, "w", encoding='UTF-8') as f:
+            f.write('ia upload --spreadsheet=' + outpath_csv)
+            f.close
+        with open(outpath_manager, "a", encoding='UTF-8') as f:
+          f.write(f"start {outpath_bat} \n")
+      subprocess.Popen([outpath_manager],shell=True)
