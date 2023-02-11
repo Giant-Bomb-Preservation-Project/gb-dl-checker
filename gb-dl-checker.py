@@ -117,7 +117,6 @@ while True:
             if row['best_size_bytes'] and filesize == float(row['best_size_bytes'].replace(',','')):
               apidata = row
               
-              # If Show CSV present do not rename based on API dump
               if not show:
                   
                   # Take original filename and rename to the name on the API sheet
