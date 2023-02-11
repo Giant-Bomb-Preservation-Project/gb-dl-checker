@@ -19,11 +19,11 @@ Choose your downloads folder (either show specific or high-level folder for mult
 
 > **API CSV:**
 Choose the location of the API dump CSV file
-- If you do not have this, download it from the [releases page](https://github.com/muffinsAKA/gb-dl-checker/releases/tag/API-Dump-1.0) or export a CSV copy of the API dump here https://docs.google.com/spreadsheets/d/1MPAHk9RS3yMExC7iX_eM_2W8ljyUXy-nBurjZ2fdU9s/edit
+- If you do not have this, download it from the [releases page](https://github.com/muffinsAKA/gb-dl-checker/releases/tag/API-Dump-1.0) or export a CSV copy of the API dump here https://docs.google.com/spreadsheets/d/1MPAHk9RS3yMExC7iX_eM_2W8ljyUXy-nBurjZ2fdU9s/edit Open the spreadsheet and navigate to your show's page. Click on File > Download > Comma separated value (.csv)
 
 
 > **Show CSV:** Tells the tool how many episodes are expected for the show and to alert if any are missing.
-- If you do not have this, export a CSV of the Giant Bomb Archive sheet (found in #links-and-resources on Discord) under the show-specific page.
+- If you do not have this, export a CSV of the Giant Bomb Archive sheet (found in #links-and-resources on Discord) under the show-specific page. Open the spreadsheet and navigate to your show's page. Click on File > Download > Comma separated value (.csv)
 
 > **Upload CSV Output Directory:** Where the CSV(s) that will be used to batch upload to Archive.org will be saved/named.
 
