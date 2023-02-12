@@ -279,22 +279,22 @@ while True:
     elif event == "Upload":
       
       # Creates upload launcher naming based on Upload CSV input
-      outpath_manager = f'{os.path.splitext(output_csv)[0]}_upload_manager.ps1'
+      outpath_manager = f'{os.path.splitext(output_csv)[0]}_upload_manager.bat'
       
       # Deletes existing launcher
       if os.path.exists(outpath_manager):
         os.remove(outpath_manager)
       
       # Write separate Powershell scripts for each CSV created earlier
-      # e.g. MarioMaker1.csv, Mariomaker2.csv would mean MarioMaker1.ps1, Mariomaker2.ps1
+      # e.g. MarioMaker1.csv, Mariomaker2.csv would mean MarioMaker1.bat, Mariomaker2.bat
       for i in range(output_parts):
-        outpath_bat = f'{os.path.splitext(output_csv)[0]}{i+1}.ps1' if output_parts > 1 else f'{os.path.splitext(output_csv)[0]}.bat'       
+        outpath_bat = f'{os.path.splitext(output_csv)[0]}{i+1}.bat' if output_parts > 1 else f'{os.path.splitext(output_csv)[0]}.bat'       
         outpath_csv = f'{os.path.splitext(output_csv)[0]}{i+1}.csv' if output_parts > 1 else output_csv
         with open(outpath_bat, "w", encoding='UTF-8') as f:
             f.write('ia upload --spreadsheet=' + '\"' + outpath_csv + '\"' + ' --retries 100')
             f.close
         
-        # Write upload launcher PS1 file that executes each individual instance of Powershell
+        # Write upload launcher bat file that executes each individual instance of Powershell
         with open(outpath_manager, "a", encoding='UTF-8') as f:
           f.write(f"start \"{outpath_bat}\" \n")
       subprocess.Popen([outpath_manager], shell=True)
