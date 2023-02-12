@@ -121,8 +121,8 @@ while True:
                   
                   # Take original filename and rename to the name on the API sheet
                   filename_normalized = apidata['Filename']
-                  new_path_api = os.path.join(filepath, filename_normalized + '.mp4')
-                  os.rename(path, new_path_api)
+                  new_path = os.path.join(filepath, filename_normalized + '.mp4')
+                  os.rename(path, new_path)
                   
                   # Print file renaming to Console
                   print("     ")
@@ -144,8 +144,8 @@ while True:
                       
                       # Rename files (only runs if Show CSV present)
                       filename_normalized = apidata['Filename']
-                      new_path_show = os.path.join(filepath, filename_normalized + '.mp4')
-                      os.rename(path, new_path_show)
+                      new_path = os.path.join(filepath, filename_normalized + '.mp4')
+                      os.rename(path, new_path)
                       
                       # Print file renaming to Console
                       print('     ')
@@ -172,7 +172,7 @@ while True:
                 # Assemble all the metadata for the Internet Archive
                 output.append({
                   'identifier': 'gb-' + apidata['guid'] + '-ID' + ''.join(random.choices(string.ascii_uppercase + string.digits, k=5)),
-                  'file': path,
+                  'file': new_path,
                   'title': apidata['name'],
                   'description': apidata['deck'],
                   'subject[0]': 'Giant Bomb',
