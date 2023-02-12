@@ -27,13 +27,13 @@ autoscroll=False),
 # Interface layout
 split_choices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 controlframe = [
-[sg.Text("Videos Folder: "), sg.Input(), sg.FolderBrowse(key="-GBDIR-")],
-[sg.Text("API CSV: "), sg.Input(), sg.FileBrowse(key="-APICSV-")],
-[sg.Text("Show CSV: "), sg.Input(), sg.FileBrowse(key="-SHOWCSV-")],
+[sg.Text("Videos Folder: "), sg.Input(key="-GBINPUT-", change_submits=True), sg.FolderBrowse(key="-GBDIR-")],
+[sg.Text("API CSV: "), sg.Input(key="-APIINPUT-", change_submits=True), sg.FileBrowse(key="-APICSV-")],
+[sg.Text("Show CSV: "), sg.Input(key="-SHOWINPUT-", change_submits=True), sg.FileBrowse(key="-SHOWCSV-")],
 ]
 
 csv_frame = [
-[sg.Text("Upload CSV Output Directory: "), sg.Input(), sg.FileSaveAs(button_text='Browse', file_types=[("CSV Files", "*.csv", )], key="-UPLOADCSV-")],
+[sg.Text("Upload CSV Output Directory: "), sg.Input(key="-CSVinputbox-", change_submits=True), sg.FileSaveAs(button_text='Browse', file_types=[("CSV Files", "*.csv", )], key="-UPLOADCSV-")],
 [sg.Text("Split uploads into how many CSVs?: "), sg.Combo(split_choices, default_value = 1, key='-SPLITS-')],
 ]
 
@@ -66,14 +66,31 @@ while True:
         ### MAIN SCRIPT EXECUTION ###
 
         # Define the path variables from shlubbert's og script with the inputs from the chosen locations 
-        video_folder = values["-GBDIR-"]
-        apidump_csv = values["-APICSV-"]
-        show_csv = values["-SHOWCSV-"]
+        
+        # If input box has content in it, take that, otherwise take the input from the directory/filebrowser
+        if values["-GBINPUT-"] != '':
+          video_folder = values["-GBINPUT-"]
+        elif values["-GBDIR-"] == True:
+          video_folder = values["-GBDIR-"]
+
+        # Repeated
+        if values["-APIINPUT-"] != '':
+          apidump_csv = values["-APIINPUT-"]
+        elif values["-APICSV-"] == True:
+          apidump_csv = values["-APICSV-"]
+        
+        # Repeated
+        if values["-SHOWINPUT-"] != '':
+          show_csv = values["-SHOWINPUT-"]
+        elif values["-SHOWCSV-"] == True:
+          show_csv = values["-SHOWCSV-"]
 
         # Where the output CSV will be saved (old files will be overwritten).
         # Can then be passed to the IA CLI with `ia upload --spreadsheet=upload.csv`
         if values["-UPLOADCSV-"] != '':
           output_csv = values["-UPLOADCSV-"]
+        elif values["-CSVinputbox-"] == True:
+          output_csv = values["-CSVinputbox-"]
         else:
           output_csv = (os.getcwd() + '\\upload.csv')
         
