@@ -79,7 +79,7 @@ while True:
         
         # Split the output into multiple CSV files to allow running multiple instances
         # of the IA CLI simultaneously for faster uploads (theoretically... if it doesn't ratelimit)
-        output_parts = values["-SPLITS-"]
+        output_parts = int(values["-SPLITS-"])
 
         # Optional: Identifier of the archive.org collection, if there is one
         # (otherwise uploads will have to be moved by an IA admin afterwards)
