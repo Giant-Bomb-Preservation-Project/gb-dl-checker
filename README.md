@@ -7,9 +7,9 @@ Checks Giant Bomb downloads folders for the presence of all show episodes as wel
 If videos are found they are re-named to match our naming conventions. Missing episodes or episodes with lower quality will
 be flagged in the output log.
 
-Loading only the API dump will search and rename files across multiple shows. 
+Loading only the API dump will search and rename files across multiple shows but will NOT be able to tell you if you have all of the episodes of a specific show.
 
-Specifying a Show CSV as well as the API dump will limit the analysis to just that show.
+Specifying a Show CSV AND the API dump will limit the analysis to just that show but will be able to report whether you have the full show or are missing episodes.
 
 ## USAGE
 - Run gb-dl-checker.py (or exe)
