@@ -4,7 +4,7 @@ Forked from https://gist.github.com/shlubbert/56d4865d1256a3d1a2eeed8c23df7bcb b
 
 Checks Giant Bomb downloads folders for the presence of all show episodes as well as checking for the highest quality available.
 
-If videos are found they are re-named based to match our naming conventions. Missing episodes or episodes with lower quality will
+If videos are found they are re-named to match our naming conventions. Missing episodes or episodes with lower quality will
 be flagged in the output log.
 
 Loading only the API dump will search and rename files across multiple shows. 
