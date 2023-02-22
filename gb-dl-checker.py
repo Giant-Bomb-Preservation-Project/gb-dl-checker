@@ -149,6 +149,7 @@ while True:
                   print('FOUND: ' + filename)
                   print('RENAMED TO: ' + filename_normalized + '.mp4')
                   print('-------------------------') 
+              break
 
           if apidata:
           
@@ -172,6 +173,7 @@ while True:
                       print('RENAMED TO: ' + filename_normalized + '.mp4')
                       print('-------------------------')  
                       skip = False
+                      break
 
             if skip:
                 print('-', end='')
