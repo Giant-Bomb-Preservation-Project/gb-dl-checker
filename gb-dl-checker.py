@@ -190,7 +190,7 @@ while True:
 
                 # Assemble all the metadata for the Internet Archive
                 output.append({
-                  'identifier': 'gb-' + apidata['guid'],
+                  'identifier': 'gb-' + apidata['guid'] + '-ID' + ''.join(random.choices(string.ascii_uppercase + string.digits, k=5)),
                   'file': new_path,
                   'title': apidata['name'],
                   'description': apidata['deck'],
