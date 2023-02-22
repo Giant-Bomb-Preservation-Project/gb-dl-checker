@@ -20,7 +20,7 @@ background_color='#4e172e',
 text_color='#E16363',
 reroute_stdout=True, 
 reroute_stderr=True,
-autoscroll=False),
+autoscroll=True),
 ]
 ]
 
@@ -84,6 +84,8 @@ while True:
           show_csv = values["-SHOWINPUT-"]
         elif values["-SHOWCSV-"] == True:
           show_csv = values["-SHOWCSV-"]
+        else:
+          show_csv = ''
 
         # Where the output CSV will be saved (old files will be overwritten).
         # Can then be passed to the IA CLI with `ia upload --spreadsheet=upload.csv`
